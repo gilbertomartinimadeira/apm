@@ -8,6 +8,9 @@ export class ProductListComponent {
     pageTitle: String = 'Product list';
     imageWidth = 50;
     imageMargin = 2;
+    showImage = false;
+    listFilter = 'cart';
+
     products: any[] = [
         {
           'productId': 1,
@@ -60,4 +63,9 @@ export class ProductListComponent {
           'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
         }
       ];
+
+
+      toggleImage(): void {
+        this.showImage = !this.showImage;
+      }
 }

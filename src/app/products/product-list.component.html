@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-2">Filter By</div>
             <div class="col-md-4">
-                <input type="text" />            
+                <input type="text" [(ngModel)]="listFilter"/>            
             </div>
 
         </div>
@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th>
-                        <button class="btn btn-primary">Show Image</button>
+                        <button (click)="toggleImage()" class="btn btn-primary">{{ showImage ? 'Hide' :'Show' }}</button>
                     </th>
                     <th>Product</th>
                     <th>Code</th>
@@ -30,11 +30,17 @@
             </thead>
             <tbody>
                 <tr *ngFor="let product of products">
-                    <td><img [src]="product.imageUrl" [alt]="product.productName" [style.width.px]="imageWidth"></td>
+                    <td>
+                        <img 
+                             *ngIf="showImage"
+                             [src]="product.imageUrl" 
+                             [alt]="product.productName" 
+                             [style.width.px]="imageWidth">
+                    </td>
                     <td>{{ product.productName }}</td>
-                    <td>{{ product.productCode }}</td>
+                    <td>{{ product.productCode | lowercase}}</td>
                     <td>{{ product.releaseDate }}</td>
-                    <td>{{ product.price }}</td>
+                    <td>{{ product.price | currency : 'USD': 'symbol': '1.2-2' }}</td>
                     <td>{{ product.starRating }}</td>                
                 </tr>
             </tbody>
